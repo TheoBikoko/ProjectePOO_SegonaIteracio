@@ -18,10 +18,7 @@ private boolean hirable;
     }
 
     public boolean hasPassedSubject(Subject subject){
-        if (subject.getGrade() < 5) {
-           return false;
-        }
-        return true;
+        return !(subject.getGrade() < 5);
     }
 
     public String getDetailsInternship(Internship internship){

@@ -1,5 +1,6 @@
 package UI;
 
+import Manager.MainManager;
 import Manager.ManagerImplemented;
 import Models.Internship.Country;
 import Models.Internship.ErasmusInternship;
@@ -14,16 +15,18 @@ public class MenuUI {
     private InternshipUI internshipUI;
     private SupervisorUI supervisorUI;
     private StudentUI studentUI;
-    static ManagerImplemented managerImplemented;
+    private ManagerImplemented managerImplemented;
 
     public MenuUI() {
         mainMenuUI = new MainMenuUI();
         internshipUI = new InternshipUI();
         supervisorUI = new SupervisorUI();
         studentUI = new StudentUI();
+        managerImplemented = new ManagerImplemented(new MainManager());
     }
 
     public static void main(String[] args) {
+        ManagerImplemented managerImplemented = new ManagerImplemented(new MainManager());
         MenuUI menuUI = new MenuUI();
         boolean running = true;
 
