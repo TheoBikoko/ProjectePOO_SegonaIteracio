@@ -1,7 +1,6 @@
 package Manager;
 
 import Models.Internship.Internship;
-import Models.Person.Person;
 import Models.Person.Student;
 import Models.Person.Supervisor;
 import Models.Subject;
@@ -38,10 +37,10 @@ public class ManagerImplemented {
     }
 
     public Student findStudentById(String id) {
-        return (Student) manager.findStudentById(id);
+        return manager.findStudentById(id);
     }
 
     public Supervisor findSupervisorById(String id) {
-        return (Supervisor) manager.findSupervisorById(id);
+        return manager.findSupervisorById(id);
     }
 }

@@ -18,8 +18,8 @@ public interface Manager {
 
     void addInternship(Internship internship);
 
-    public Student findStudentById(String id);
+    Student findStudentById(String id);
 
-    public Supervisor findSupervisorById(String id);
+    Supervisor findSupervisorById(String id);
 
 }

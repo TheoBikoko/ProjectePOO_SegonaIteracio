@@ -1,26 +1,23 @@
 package UI;
 
-import Manager.MainManager;
 import Manager.ManagerImplemented;
+import Models.Internship.Country;
 import Models.Internship.ErasmusInternship;
-import Models.Internship.Internship;
 import Models.Internship.NationalInternship;
 import Models.Person.Student;
 import Models.Person.Supervisor;
 import Models.Subject;
-
 import java.util.Scanner;
 
 public class MenuUI {
-    private MainMenu mainMenu;
+    private MainMenuUI mainMenuUI;
     private InternshipUI internshipUI;
     private SupervisorUI supervisorUI;
     private StudentUI studentUI;
-    static MainManager mainManager;
     static ManagerImplemented managerImplemented;
 
     public MenuUI() {
-        mainMenu = new MainMenu();
+        mainMenuUI = new MainMenuUI();
         internshipUI = new InternshipUI();
         supervisorUI = new SupervisorUI();
         studentUI = new StudentUI();
@@ -32,14 +29,14 @@ public class MenuUI {
 
         while (running){
             Scanner input = new Scanner(System.in);
-            System.out.println("Welcome to our Internship Service for IES Poblenou. Please select one of the following options: ");
-            menuUI.mainMenu.mainDisplay();
+            menuUI.mainMenuUI.welcome();
+            menuUI.mainMenuUI.mainDisplay();
             int option = input.nextInt();
             input.nextLine();
 
             switch (option){
                 case 1:
-                    menuUI.mainMenu.studentManager();
+                    menuUI.mainMenuUI.studentManager();
                     menuUI.studentUI.mainDisplay();
                     switch (input.nextInt()){
                         case 1:
@@ -67,8 +64,9 @@ public class MenuUI {
                             System.out.print("Enter the subject grade: ");
                             float subjectGrade = input.nextFloat();
                             input.nextLine();
+                            Student student = managerImplemented.findStudentById(id);
 
-                            managerImplemented.assignSubjectToStudent(new Subject(subjectName, subjectGrade), managerImplemented.findStudentById(id));
+                            managerImplemented.assignSubjectToStudent(new Subject(subjectName, subjectGrade), student);
                             System.out.println("Subject has been added.");
                             break;
 
@@ -76,18 +74,20 @@ public class MenuUI {
                             input.nextLine();
                             System.out.print("Enter student ID: ");
                             id = input.nextLine();
-                            managerImplemented.reviewInternshipDetails(managerImplemented.findStudentById(id));
+                            student = managerImplemented.findStudentById(id);
+
+                            System.out.println(managerImplemented.reviewInternshipDetails(student));
                             break;
 
                         case 4:
                             input.nextLine();
-                            System.out.println("Returning to the main menu...");
+                            menuUI.mainMenuUI.exit();
                             break;
                     }
                     break;
 
                 case 2:
-                    menuUI.mainMenu.supervisorManager();
+                    menuUI.mainMenuUI.supervisorManager();
                     menuUI.supervisorUI.mainDisplay();
                     switch (input.nextInt()){
                         case 1:
@@ -110,33 +110,31 @@ public class MenuUI {
                             String idStudent = input.nextLine();
                             System.out.print("Enter supervisor ID: ");
                             String idSupervisor = input.nextLine();
+                            Student student = managerImplemented.findStudentById(idStudent);
+                            Supervisor supervisor = managerImplemented.findSupervisorById(idSupervisor);
 
-
-                            managerImplemented.assignStudentToSupervisor(managerImplemented.findStudentById(idStudent), managerImplemented.findSupervisorById(idSupervisor));
+                            managerImplemented.assignStudentToSupervisor(student, supervisor);
                             System.out.println("The student has been assigned to the supervisor.");
                             break;
 
                         case 3:
                             input.nextLine();
-                            System.out.println("Returning to the main menu...");
+                            menuUI.mainMenuUI.exit();
                             break;
                     }
                     break;
 
                 case 3:
-                    menuUI.mainMenu.internshipManager();
+                    menuUI.mainMenuUI.internshipManager();
                     menuUI.internshipUI.mainDisplay();
                     switch (input.nextInt()){
                         case 1:
                             input.nextLine();
-                            System.out.print("Enter student ID: ");
-                            String idStudent = input.nextLine();
                             System.out.print("Enter supervisor ID: ");
                             String idSupervisor = input.nextLine();
                             System.out.print("Enter company name: ");
                             String company = input.nextLine();
 
-                            Student student = managerImplemented.findStudentById(idStudent);
                             Supervisor supervisor = managerImplemented.findSupervisorById(idSupervisor);
 
                             menuUI.internshipUI.InternshipType();
@@ -146,45 +144,52 @@ public class MenuUI {
                                     switch (input.nextInt()){
                                         case 1:
                                             managerImplemented.addInternship(new NationalInternship(supervisor, company, NationalInternship.Type.INTENSIVE));
+                                            System.out.println("The internship has been added.");
                                             break;
                                         case 2:
                                             managerImplemented.addInternship(new NationalInternship(supervisor, company, NationalInternship.Type.DUAL));
+                                            System.out.println("The internship has been added.");
+
                                             break;
                                         case 3:
-                                            System.out.println("Canceling operation...");
+                                            menuUI.mainMenuUI.cancelOperation();
                                             break;
                                     }
                                 case 2:
                                     System.out.println("Please indicate the country: ");
-                                    String country = input.nextLine();
-
+                                    String inputCountry = input.nextLine().toUpperCase();
+                                    Country country = Country.valueOf(inputCountry);
                                     managerImplemented.addInternship(new ErasmusInternship(supervisor, company, country));
+                                    System.out.println();
+
+                                case 3:
+                                    menuUI.mainMenuUI.cancelOperation();
+                                    break;
                             }
-
-                            System.out.println("Supervisor has been added.");
                             break;
 
-                        case 2:
-                            input.nextLine();
-                            System.out.print("Enter student ID: ");
-                             idStudent = input.nextLine();
-                            System.out.print("Enter supervisor ID: ");
-                             idSupervisor = input.nextLine();
+                            case 2:
+                                input.nextLine();
+                                System.out.print("Enter student ID: ");
+                                String idStudent = input.nextLine();
+                                Student student = managerImplemented.findStudentById(idStudent);
+                                System.out.print("Enter supervisor ID: ");
+                                 idSupervisor = input.nextLine();
+                                 supervisor = managerImplemented.findSupervisorById(idSupervisor);
 
+                                managerImplemented.assignStudentToSupervisor(student, supervisor);
+                                System.out.println("The student has been assigned to the supervisor.");
+                                break;
 
-                            managerImplemented.assignStudentToSupervisor(managerImplemented.findStudentById(idStudent), managerImplemented.findSupervisorById(idSupervisor));
-                            System.out.println("The student has been assigned to the supervisor.");
-                            break;
-
-                        case 3:
-                            input.nextLine();
-                            System.out.println("Returning to the main menu...");
-                            break;
-                    }
-                    break;
+                            case 3:
+                                input.nextLine();
+                                menuUI.mainMenuUI.exit();
+                                break;
+                        }
+                        break;
 
                 case 4:
-                    System.out.println("Thank you for using our services.");
+                    menuUI.mainMenuUI.close();
                     running = false;
                     break;
             }

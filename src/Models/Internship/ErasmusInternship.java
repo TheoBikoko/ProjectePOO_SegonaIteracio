@@ -1,12 +1,11 @@
 package Models.Internship;
-
 import Models.Person.Supervisor;
 
 public class ErasmusInternship extends Internship{
-    private String country;
+    private Country country;
     private float totalHours;
 
-    public ErasmusInternship(Supervisor supervisor, String company, String country) {
+    public ErasmusInternship(Supervisor supervisor, String company, Country country) {
         super(supervisor, company);
         this.country = country;
     }

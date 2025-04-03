@@ -1,7 +1,6 @@
 package Manager;
 
 import Models.Internship.Internship;
-import Models.Person.Person;
 import Models.Person.Student;
 import Models.Person.Supervisor;
 import Models.Subject;
