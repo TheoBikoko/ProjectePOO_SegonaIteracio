@@ -12,7 +12,9 @@ public class MainMenuUI implements UI {
                             """);
     }
 
-    public void welcome() {System.out.println("Welcome to our Internship Service for IES Poblenou. Please select one of the following options: ");}
+    public void welcome() {
+        System.out.println("Welcome to our Internship Service for IES Poblenou. Please select one of the following options: ");
+    }
 
     public void studentManager(){
         System.out.println("Entering the student manager...");
@@ -36,6 +38,10 @@ public class MainMenuUI implements UI {
 
     public void close(){
         System.out.println("Thank you for using our services.");
+    }
+
+    public void wrongOption(){
+        System.out.println("Invalid option.");
     }
 
 }

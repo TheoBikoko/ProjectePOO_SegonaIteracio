@@ -15,14 +15,12 @@ public class MenuUI {
     private InternshipUI internshipUI;
     private SupervisorUI supervisorUI;
     private StudentUI studentUI;
-    private ManagerImplemented managerImplemented;
 
     public MenuUI() {
         mainMenuUI = new MainMenuUI();
         internshipUI = new InternshipUI();
         supervisorUI = new SupervisorUI();
         studentUI = new StudentUI();
-        managerImplemented = new ManagerImplemented(new MainManager());
     }
 
     public static void main(String[] args) {
@@ -85,6 +83,10 @@ public class MenuUI {
                         case 4:
                             input.nextLine();
                             menuUI.mainMenuUI.exit();
+                            break;
+
+                        default:
+                            menuUI.mainMenuUI.wrongOption();
                             break;
                     }
                     break;
@@ -157,6 +159,10 @@ public class MenuUI {
                                         case 3:
                                             menuUI.mainMenuUI.cancelOperation();
                                             break;
+
+                                        default:
+                                            menuUI.mainMenuUI.wrongOption();
+                                            break;
                                     }
                                 case 2:
                                     System.out.println("Please indicate the country: ");
@@ -167,6 +173,10 @@ public class MenuUI {
 
                                 case 3:
                                     menuUI.mainMenuUI.cancelOperation();
+                                    break;
+
+                                default:
+                                   menuUI.mainMenuUI.wrongOption();
                                     break;
                             }
                             break;
@@ -188,12 +198,20 @@ public class MenuUI {
                                 input.nextLine();
                                 menuUI.mainMenuUI.exit();
                                 break;
+
+                            default:
+                                menuUI.mainMenuUI.wrongOption();
+                                break;
                         }
                         break;
 
                 case 4:
                     menuUI.mainMenuUI.close();
                     running = false;
+                    break;
+
+                default:
+                    menuUI.mainMenuUI.wrongOption();
                     break;
             }
         }

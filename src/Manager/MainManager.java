@@ -4,7 +4,6 @@ import Models.Internship.Internship;
 import Models.Person.Student;
 import Models.Person.Supervisor;
 import Models.Subject;
-
 import java.util.HashSet;
 
 public class MainManager implements Manager {
@@ -19,17 +18,17 @@ public class MainManager implements Manager {
 
     @Override
     public void assignSubjectToStudent(Subject subject, Student student) {
-            student.getSubjects().add(subject);
+        student.getSubjects().add(subject);
     }
 
     @Override
     public String reviewInternshipDetails(Student student) {
-                return student.getDetailsInternship(student.getCurrentInternship());
+        return student.getDetailsInternship(student.getCurrentInternship());
     }
 
     @Override
     public void addSupervisor(Supervisor supervisor) {
-
+        supervisors.add(supervisor);
     }
 
     @Override
