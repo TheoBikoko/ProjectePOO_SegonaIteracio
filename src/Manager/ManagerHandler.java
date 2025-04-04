@@ -5,10 +5,10 @@ import Models.Person.Student;
 import Models.Person.Supervisor;
 import Models.Subject;
 
-public class ManagerImplemented {
+public class ManagerHandler {
     Manager manager;
 
-    public ManagerImplemented(Manager manager) {
+    public ManagerHandler(Manager manager) {
         this.manager = manager;
     }
 

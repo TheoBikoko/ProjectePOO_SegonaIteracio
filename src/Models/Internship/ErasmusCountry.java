@@ -1,6 +1,6 @@
 package Models.Internship;
 
-public enum Country {
+public enum ErasmusCountry {
         ALBANIA,
         AUSTRIA,
         BELGIUM,

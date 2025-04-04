@@ -1,6 +1,8 @@
-package UI;
+package UI.Components;
 
-public class InternshipUI implements UI{
+import UI.UI;
+
+public class InternshipUI implements UI {
 
     @Override
     public void mainDisplay() {
@@ -28,5 +30,17 @@ public class InternshipUI implements UI{
                             2. Dual
                             3. Cancel
                             """);
+    }
+
+    public void requestCompany(){
+        System.out.println("Enter company: ");
+    }
+
+    public void requestCountry(){
+        System.out.println("Please indicate the country: ");
+    }
+
+    public void internshipAdded(){
+        System.out.println("The internship has been added.");
     }
 }

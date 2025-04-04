@@ -1,4 +1,6 @@
-package UI;
+package UI.Components;
+
+import UI.UI;
 
 public class MainMenuUI implements UI {
 
