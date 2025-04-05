@@ -1,5 +1,3 @@
-package domain.ui;
-
 import domain.enums.ErasmusCountry;
 import domain.enums.RequiredSubject;
 import domain.model.*;
