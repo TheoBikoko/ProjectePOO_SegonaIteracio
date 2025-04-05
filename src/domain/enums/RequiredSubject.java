@@ -1,17 +1,24 @@
-package Models;
+package domain.enums;
 
-public class Subject {
-    private String name;
-    private float grade;
+import domain.model.Subject;
 
-    public Subject(String name, float grade) {
+public class RequiredSubject implements Subject{
+    private final String name;
+    private final float grade;
+
+    public RequiredSubject(String name, float grade) {
         this.name = name;
         this.grade = grade;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public float getGrade() {
         return grade;
     }
+
 
     @Override
     public String toString() {

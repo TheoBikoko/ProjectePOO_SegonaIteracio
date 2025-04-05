@@ -1,4 +1,4 @@
-package Models.Internship;
+package domain.enums;
 
 public enum ErasmusCountry {
         ALBANIA,

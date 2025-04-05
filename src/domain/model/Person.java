@@ -1,4 +1,4 @@
-package Models.Person;
+package domain.model;
 
 public abstract class Person {
     protected String id;
